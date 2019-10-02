@@ -1,2 +1,2 @@
-include ':presentation', ':domain', ':data'
+include ':presentation', ':domain', ':data', ':remote', ':cache'
 rootProject.name='SpekExample'
