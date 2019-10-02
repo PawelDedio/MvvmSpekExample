@@ -44,6 +44,7 @@ ext {
     domainDependencies = [
             kotlin,
             'javax.inject:javax.inject:1',
+
             // Coroutines
             coroutines.core
     ]
