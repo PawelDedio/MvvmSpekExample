@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="font_3x_small">8sp</dimen>
+    <dimen name="font_2x_small">10sp</dimen>
+    <dimen name="font_1x_small">12sp</dimen>
+    <dimen name="font_small">14sp</dimen>
+    <dimen name="font_medium">16sp</dimen>
+    <dimen name="font_large">18sp</dimen>
+    <dimen name="font_1x_large">20sp</dimen>
+    <dimen name="font_2x_large">22sp</dimen>
+    <dimen name="font_3x_large">24sp</dimen>
+    <dimen name="font_4x_large">26sp</dimen>
+    <dimen name="font_5x_large">28sp</dimen>
+
+    <dimen name="spacing_5x_small">4dp</dimen>
+    <dimen name="spacing_4x_small">6dp</dimen>
+    <dimen name="spacing_3x_small">8dp</dimen>
+    <dimen name="spacing_2x_small">10dp</dimen>
+    <dimen name="spacing_1x_small">12dp</dimen>
+    <dimen name="spacing_small">14dp</dimen>
+    <dimen name="spacing_medium">16dp</dimen>
+    <dimen name="spacing_large">18dp</dimen>
+    <dimen name="spacing_1x_large">20dp</dimen>
+    <dimen name="spacing_2x_large">22dp</dimen>
+    <dimen name="spacing_3x_large">24dp</dimen>
+    <dimen name="spacing_4x_large">26dp</dimen>
+    <dimen name="spacing_5x_large">28dp</dimen>
+    <dimen name="spacing_6x_large">30dp</dimen>
+    <dimen name="spacing_7x_large">32dp</dimen>
+
+    <dimen name="icon_4x_small">12dp</dimen>
+    <dimen name="icon_3x_small">14dp</dimen>
+    <dimen name="icon_2x_small">16dp</dimen>
+    <dimen name="icon_1x_small">18dp</dimen>
+    <dimen name="icon_small">20dp</dimen>
+    <dimen name="icon_medium">22dp</dimen>
+
+    <dimen name="horizontal_divider_height">1dp</dimen>
+
+    <dimen name="default_corners_radius">14dp</dimen>
+
+    <dimen name="input_blue_height">35dp</dimen>
+    <dimen name="input_blue_padding_horizontal">@dimen/spacing_medium</dimen>
+    <dimen name="input_blue_padding_vertical">@dimen/spacing_3x_small</dimen>
+    <dimen name="input_blue_radius">20dp</dimen>
+
+    <dimen name="button_blue_height">30dp</dimen>
+    <dimen name="button_blue_padding_horizontal">20dp</dimen>
+    <dimen name="button_blue_padding_vertical">0dp</dimen>
+    <dimen name="button_blue_radius">20dp</dimen>
+
+    <dimen name="loading_image_size">60dp</dimen>
+</resources>
