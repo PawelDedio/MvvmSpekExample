@@ -2,12 +2,14 @@
 <resources>
     <declare-styleable name="BaseRecyclerView">
         <attr name="showDivider" format="boolean" />
-        <attr name="showDividerAboveFirstItem" format="boolean" />
-        <attr name="showDividerBelowLastItem" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="LoadingOverlayView">
         <attr name="loadingImageWidth" format="dimension"/>
         <attr name="loadingImageHeight" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="RoundedCornersImageView">
+        <attr name="cornerRadius" format="dimension" />
     </declare-styleable>
 </resources>

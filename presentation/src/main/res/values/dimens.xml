@@ -50,4 +50,6 @@
     <dimen name="button_blue_radius">20dp</dimen>
 
     <dimen name="loading_image_size">60dp</dimen>
+
+    <dimen name="rounded_corners_image_view_default_radius">18dp</dimen>
 </resources>

@@ -12,4 +12,8 @@
 
     <color name="mainBackground">#fff</color>
     <color name="dividerBackground">#9b9b9b</color>
+
+    <color name="loaderImageColor">@color/blue</color>
+
+    <color name="loadingOverlayBackground">#FFFFFF</color>
 </resources>
