@@ -1,0 +1,139 @@
+ext {
+    //VERSIONS
+    compatVersion = '1.0.2'
+    daggerVersion = '2.24'
+    compatDesignVersion = '1.0.0'
+    navVersion = "2.1.0-rc01"
+    lifecycleVersion = "2.2.0-alpha01"
+    coroutinesVersion = "1.3.1"
+    okHttpVersion = '3.14.2'
+    retrofitVersion = '2.6.0'
+    gsonVersion = '2.8.5'
+    spekVersion = '2.0.7'
+
+    //LIBRARIES
+    kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+    okHttp = "com.squareup.okhttp3:okhttp:$okHttpVersion"
+    okHttpLogger = "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
+    retrofitConverter = "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    retrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    gson = "com.google.code.gson:gson:$gsonVersion"
+
+    dagger = [
+            kapt          : "com.google.dagger:dagger-compiler:$daggerVersion",
+            implementation: "com.google.dagger:dagger:$daggerVersion"
+    ]
+
+    coroutines = [
+            core   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion",
+            android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion",
+            test   : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
+    ]
+
+    spek = [
+            dsl   : "org.spekframework.spek2:spek-dsl-jvm:$spekVersion",
+            runner: "org.spekframework.spek2:spek-runner-junit5:$spekVersion"
+    ]
+
+    junit = [
+            junit : "junit:junit:4.12",
+            engine: "org.junit.platform:junit-platform-engine:1.0.1"
+    ]
+
+    //DEPENDENCIES
+    domainDependencies = [
+            kotlin,
+            'javax.inject:javax.inject:1',
+            // Coroutines
+            coroutines.core
+    ]
+
+    domainKaptDependencies = [
+    ]
+
+    domainTestDependencies = []
+
+    dataDependencies = [
+            kotlin,
+            dagger.implementation,
+
+            // Coroutines
+            coroutines.core
+    ]
+
+    dataKaptDependencies = [
+            dagger.kapt,
+    ]
+
+    dataTestDependencies = []
+
+    remoteDependencies = [
+            kotlin,
+            dagger.implementation,
+            gson,
+
+            // Coroutines
+            coroutines.core,
+
+            // Network
+            okHttp,
+            okHttpLogger,
+            retrofitConverter,
+            retrofit
+    ]
+
+    remoteKaptDependencies = [
+            dagger.kapt,
+    ]
+
+    remoteTestDependencies = []
+
+    cacheDependencies = [
+
+    ]
+
+    cacheKaptDependencies = [
+
+    ]
+
+    cacheTestDependencies = [
+            
+    ]
+
+    presentationDependencies = [
+            kotlin,
+            dagger.implementation,
+
+            //Android design
+            "androidx.appcompat:appcompat:$compatVersion",
+            "androidx.core:core-ktx:$compatVersion",
+            "androidx.constraintlayout:constraintlayout:1.1.3",
+            "com.google.android.material:material:$compatDesignVersion",
+
+            //Lifecycle components
+            "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion",
+            "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion",
+            "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion",
+
+            // Coroutines
+            coroutines.core,
+            coroutines.android,
+
+            // Retrofit - needed in presentation module for dependency injection
+            retrofit
+    ]
+
+    presentationKaptDependencies = [
+            dagger.kapt,
+    ]
+
+    presentationTestDependencies = [
+            spek.dsl,
+            spek.runner,
+            junit.junit,
+            junit.engine,
+            "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion",
+            "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0",
+            coroutines.test
+    ]
+}

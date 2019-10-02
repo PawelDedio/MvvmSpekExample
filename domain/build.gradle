@@ -1,8 +1,34 @@
-apply plugin: 'java-library'
+apply plugin: 'kotlin'
 
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+apply plugin: 'kotlin-kapt'
+
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
+configurations {
+    provided
 }
 
-sourceCompatibility = "7"
-targetCompatibility = "7"
+sourceSets {
+    main {
+        compileClasspath += configurations.provided
+    }
+}
+
+//Do not add dependencies here, add it to the gradleScript/dependencies.gradle file instead
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    domainDependencies.each {
+        implementation it
+    }
+
+    domainKaptDependencies.each {
+        kapt it
+    }
+
+    domainTestDependencies.each {
+        testImplementation it
+    }
+}
