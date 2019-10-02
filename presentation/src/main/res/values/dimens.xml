@@ -39,12 +39,14 @@
 
     <dimen name="default_corners_radius">14dp</dimen>
 
-    <dimen name="input_blue_height">35dp</dimen>
+    <dimen name="input_blue_height">40dp</dimen>
+    <dimen name="input_blue_width">250dp</dimen>
     <dimen name="input_blue_padding_horizontal">@dimen/spacing_medium</dimen>
     <dimen name="input_blue_padding_vertical">@dimen/spacing_3x_small</dimen>
     <dimen name="input_blue_radius">20dp</dimen>
 
-    <dimen name="button_blue_height">30dp</dimen>
+    <dimen name="button_blue_height">40dp</dimen>
+    <dimen name="button_blue_width">250dp</dimen>
     <dimen name="button_blue_padding_horizontal">20dp</dimen>
     <dimen name="button_blue_padding_vertical">0dp</dimen>
     <dimen name="button_blue_radius">20dp</dimen>

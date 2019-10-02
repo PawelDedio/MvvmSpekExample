@@ -110,6 +110,10 @@ ext {
             "androidx.constraintlayout:constraintlayout:1.1.3",
             "com.google.android.material:material:$compatDesignVersion",
 
+            //Navigation components
+            "androidx.navigation:navigation-fragment-ktx:$navVersion",
+            "androidx.navigation:navigation-ui-ktx:$navVersion",
+
             //Lifecycle components
             "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion",
             "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion",

@@ -8,9 +8,29 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        tools:context=".MainActivity"
+        tools:context=".main.MainActivity"
         style="@style/LayoutDefault">
 
+        <fragment
+            android:id="@+id/mainNavHostFragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:defaultNavHost="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:navGraph="@navigation/nav_main" />
 
+        <com.dedio.spekexample.views.LoadingOverlayView
+            android:id="@+id/mainLoadingOverlayView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/LoadingDefault" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

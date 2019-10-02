@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.dedio.spekexample.name_input.NameInputViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/LayoutWithPadding"
+        tools:context=".name_input.NameInputFragment">
+
+        <com.dedio.spekexample.views.base.BaseTextView
+            android:id="@+id/nameInputNameLabel"
+            style="@style/TextDefault"
+            android:layout_marginTop="@dimen/spacing_7x_large"
+            android:text="@string/name_input_name_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/nameInputName"
+            app:layout_constraintVertical_bias="0.3"
+            app:layout_constraintVertical_chainStyle="packed"/>
+
+        <com.dedio.spekexample.views.base.BaseInput
+            android:id="@+id/nameInputName"
+            style="@style/InputBlue"
+            android:layout_marginTop="@dimen/spacing_3x_small"
+            android:hint="@string/name_input_name_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nameInputNameLabel"
+            app:layout_constraintBottom_toTopOf="@id/nameInputSearchButton"/>
+
+        <com.dedio.spekexample.views.base.BaseButton
+            android:id="@+id/nameInputSearchButton"
+            style="@style/ButtonBlue"
+            android:text="@string/search"
+            android:layout_marginTop="@dimen/spacing_7x_large"
+            app:layout_constraintTop_toBottomOf="@id/nameInputName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
