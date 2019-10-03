@@ -1,4 +1,4 @@
-package com.dedio.domain.repository
+package com.dedio.domain.repositories
 
 import com.dedio.domain.models.BaseResult
 import com.dedio.domain.models.RepositoryListResponse
