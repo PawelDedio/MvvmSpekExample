@@ -8,5 +8,6 @@ import javax.inject.Inject
 class RemoteGithubDataSourceImpl @Inject constructor() : RemoteGithubDataSource {
 
     override suspend fun getRepositories(userName: String): BaseResult<RepositoryListResponse> {
+        return BaseResult.Error()
     }
 }

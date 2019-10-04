@@ -10,6 +10,7 @@ ext {
     retrofitVersion = '2.6.0'
     gsonVersion = '2.8.5'
     spekVersion = '2.0.7'
+    roomVersion = '2.2.0-rc01'
 
     //LIBRARIES
     kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
@@ -40,6 +41,12 @@ ext {
             engine: "org.junit.platform:junit-platform-engine:1.0.1"
     ]
 
+    room = [
+            runtime : "androidx.room:room-runtime:$roomVersion",
+            compiler : "androidx.room:room-compiler:$roomVersion",
+            ktx : "androidx.room:room-ktx:$roomVersion"
+    ]
+
     //DEPENDENCIES
     domainDependencies = [
             kotlin,
@@ -59,7 +66,9 @@ ext {
             dagger.implementation,
 
             // Coroutines
-            coroutines.core
+            coroutines.core,
+
+            gson
     ]
 
     dataKaptDependencies = [
@@ -90,11 +99,20 @@ ext {
     remoteTestDependencies = []
 
     cacheDependencies = [
+            kotlin,
+            dagger.implementation,
+            gson,
 
+            // Coroutines
+            coroutines.core,
+
+            room.runtime,
+            room.ktx,
     ]
 
     cacheKaptDependencies = [
-
+            dagger.kapt,
+            room.compiler,
     ]
 
     cacheTestDependencies = [
@@ -125,7 +143,12 @@ ext {
             coroutines.android,
 
             // Retrofit - needed in presentation module for dependency injection
-            retrofit
+            retrofit,
+
+            // Room = needed in presentation module for db injection
+            room.runtime,
+
+            gson,
     ]
 
     presentationKaptDependencies = [
