@@ -3,6 +3,7 @@ package com.dedio.cache.data_sources.github
 import com.dedio.cache.daos.GithubRepositoriesDao
 import com.dedio.cache.entities.GithubRepositories
 import com.dedio.data.data_sources.github.CachedGithubDataSource
+import com.dedio.data.exceptions.CacheException
 import com.dedio.domain.models.BaseResult
 import com.dedio.domain.models.RepositoryListResponse
 import javax.inject.Inject
@@ -13,7 +14,7 @@ class CachedGithubDataSourceImpl @Inject constructor(private val githubRepositor
         val result = githubRepositoriesDao.loadByUserName(userName)
 
         return if(result == null) {
-            BaseResult.Error()
+            BaseResult.Error(CacheException())
         } else {
             BaseResult.Ok(result.repositoryList)
         }

@@ -53,13 +53,4 @@ class AppModule(private val context: MainApplication) {
     @Provides
     @Singleton
     fun providesSerializationHelper(impl: SerializationHelperImpl) = impl as SerializationHelper
-
-    @Provides
-    @Singleton
-    fun providesDatabase() = Room.databaseBuilder(context, Database::class.java, DATABASE_FILE_NAME)
-        .build()
-
-    @Provides
-    @Singleton
-    fun providesGithubRepositoriesDao(database: Database) = database.githubRepositoriesDao()
 }

@@ -14,5 +14,5 @@ class GetRepositoriesUseCase @Inject constructor(private val repositoriesReposit
         repositoriesRepository.getRepositories(params.userName, params.forceRefresh)
     }
 
-    data class Params(val userName: String, val forceRefresh: Boolean)
+    data class Params(val userName: String, val forceRefresh: Boolean = false)
 }
