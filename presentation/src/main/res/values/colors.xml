@@ -16,4 +16,6 @@
     <color name="loaderImageColor">@color/blue</color>
 
     <color name="loadingOverlayBackground">#FFFFFF</color>
+
+    <color name="textError">#ff0000</color>
 </resources>

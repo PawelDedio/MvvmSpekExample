@@ -237,6 +237,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="TextError" parent="TextMedium">
+        <item name="android:textColor">@color/textError</item>
+    </style>
+
 
     <!-- Inputs -->
     <style name="InputDefault">

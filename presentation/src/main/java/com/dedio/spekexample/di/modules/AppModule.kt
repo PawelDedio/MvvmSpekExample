@@ -9,9 +9,11 @@ import com.dedio.data.data_sources.github.RemoteGithubDataSource
 import com.dedio.data.repositories.GithubRepositoriesRepositoryImpl
 import com.dedio.data.utils.DispatcherProviderImpl
 import com.dedio.data.utils.SerializationHelperImpl
+import com.dedio.data.utils.ValidationHelperImpl
 import com.dedio.domain.repositories.GithubRepositoriesRepository
 import com.dedio.domain.utils.DispatcherProvider
 import com.dedio.domain.utils.SerializationHelper
+import com.dedio.domain.utils.ValidationHelper
 import com.dedio.remote.data_sources.github.RemoteGithubDataSourceImpl
 import com.dedio.spekexample.MainApplication
 import com.google.gson.Gson
@@ -53,4 +55,8 @@ class AppModule(private val context: MainApplication) {
     @Provides
     @Singleton
     fun providesSerializationHelper(impl: SerializationHelperImpl) = impl as SerializationHelper
+
+    @Provides
+    @Singleton
+    fun providesValidationHelper(impl: ValidationHelperImpl) = impl as ValidationHelper
 }

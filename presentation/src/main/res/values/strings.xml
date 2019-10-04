@@ -9,4 +9,6 @@
     <!-- Name Input Fragment -->
     <string name="name_input_name_label">Enter GitHub user name:</string>
     <string name="name_input_name_hint">User name</string>
+    <string name="name_input_error_empty_name">User name cannot be empty</string>
+    <string name="name_input_error_wrong_name">Cannot load repositories for this user</string>
 </resources>
