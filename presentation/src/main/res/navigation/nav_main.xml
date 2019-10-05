@@ -6,6 +6,18 @@
     <fragment
         android:id="@+id/nameInputFragment"
         android:name="com.dedio.spekexample.name_input.NameInputFragment"
-        android:label="nameInputFragment" />
+        android:label="nameInputFragment" >
+        <action
+            android:id="@+id/action_nameInputFragment_to_userRepositoriesFragment"
+            app:destination="@id/userRepositoriesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userRepositoriesFragment"
+        android:name="com.dedio.spekexample.user_repositories.UserRepositoriesFragment"
+        android:label="UserRepositoriesFragment" >
+        <argument
+            android:name="userRepositories"
+            app:argType="com.dedio.spekexample.models.UserRepositoriesUiModel" />
+    </fragment>
 
 </navigation>

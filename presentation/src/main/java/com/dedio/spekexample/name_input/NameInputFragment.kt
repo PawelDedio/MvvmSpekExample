@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import com.dedio.spekexample.BR
 
 import com.dedio.spekexample.R
@@ -42,5 +43,18 @@ class NameInputFragment : BaseFragment() {
         )
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        observeNavigationEvents()
+    }
+
+    private fun observeNavigationEvents() {
+        viewModel.navigateToRepositoriesAction.observe {
+            val action = NameInputFragmentDirections.actionNameInputFragmentToUserRepositoriesFragment(it)
+            view?.findNavController()?.navigate(action)
+        }
     }
 }

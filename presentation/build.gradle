@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
 android {
     compileSdkVersion compileSdkCode
     buildToolsVersion "29.0.1"
@@ -18,8 +20,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
-        targetCompatibility = "8"
-        sourceCompatibility = "8"
+        targetCompatibility = "1.8"
+        sourceCompatibility = "1.8"
     }
     buildTypes {
         release {
@@ -29,6 +31,10 @@ android {
     }
     dataBinding {
         enabled = true
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 

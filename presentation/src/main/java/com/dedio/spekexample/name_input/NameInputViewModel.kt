@@ -1,14 +1,15 @@
 package com.dedio.spekexample.name_input
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.dedio.domain.use_cases.GetRepositoriesUseCase
 import com.dedio.domain.utils.ValidationHelper
 import com.dedio.spekexample.MainApplication
 import com.dedio.spekexample.R
 import com.dedio.spekexample.base.BaseViewModel
-import com.dedio.spekexample.util.NavigationService
+import com.dedio.spekexample.models.UserRepositoriesUiModel
+import com.dedio.spekexample.models.toUiModel
 import com.dedio.spekexample.util.ResourceRepository
+import com.dedio.spekexample.util.delegators.LiveEventProvider
 import com.dedio.spekexample.util.delegators.MutableLiveDataProvider
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,14 +17,13 @@ import javax.inject.Inject
 class NameInputViewModel @Inject constructor(application: MainApplication,
                                              private val resourceRepository: ResourceRepository,
                                              private val getRepositoriesUseCase: GetRepositoriesUseCase,
-                                             private val validationHelper: ValidationHelper,
-                                             private val navigationService: NavigationService) :
+                                             private val validationHelper: ValidationHelper) :
         BaseViewModel(application, resourceRepository) {
 
     val userName by MutableLiveDataProvider<String>()
+    val userNameError by MutableLiveDataProvider<String>()
 
-    private val _userNameError by MutableLiveDataProvider<String>()
-    val userNameError = _userNameError as LiveData<String>
+    val navigateToRepositoriesAction by LiveEventProvider<UserRepositoriesUiModel>()
 
     fun onSearchClick() {
         clearErrors()
@@ -38,10 +38,11 @@ class NameInputViewModel @Inject constructor(application: MainApplication,
                 showLoading()
 
                 getRepositoriesUseCase.execute(params).whenOk {
-                    navigationService.navigateToRepositoriesScreen(userName.value!!, this.value)
+                    val model = this.value.toUiModel(userName.value!!)
+                    navigateToRepositoriesAction.postValue(model)
                 }.whenError {
                     val error = resourceRepository.getString(R.string.name_input_error_wrong_name)
-                    _userNameError.postValue(error)
+                    userNameError.postValue(error)
                 }
 
                 hideLoading()
@@ -50,14 +51,14 @@ class NameInputViewModel @Inject constructor(application: MainApplication,
     }
 
     private fun clearErrors() {
-        _userNameError.postValue(null)
+        userNameError.postValue(null)
     }
 
     private fun validateAndShowError() = if(validationHelper.checkIsNotEmpty(userName.value)) {
         true
     } else {
         val error = resourceRepository.getString(R.string.name_input_error_empty_name)
-        _userNameError.postValue(error)
+        userNameError.postValue(error)
 
         false
     }

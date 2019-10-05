@@ -14,6 +14,9 @@ buildscript {
     //Global Kotlin version - need to be declared here due to usage in buildScript
     ext.kotlinVersion = '1.3.50'
 
+    //Android navigation version - need to be declared here due to usage in buildScript
+    ext.navVersion = "2.1.0"
+
     repositories {
         google()
         jcenter()
@@ -22,6 +25,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navVersion"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
