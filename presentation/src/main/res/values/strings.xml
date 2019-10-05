@@ -4,11 +4,14 @@
 
     <!-- Common -->
     <string name="search">Search</string>
-    
-    
+
+
     <!-- Name Input Fragment -->
     <string name="name_input_name_label">Enter GitHub user name:</string>
     <string name="name_input_name_hint">User name</string>
     <string name="name_input_error_empty_name">User name cannot be empty</string>
     <string name="name_input_error_wrong_name">Cannot load repositories for this user</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
