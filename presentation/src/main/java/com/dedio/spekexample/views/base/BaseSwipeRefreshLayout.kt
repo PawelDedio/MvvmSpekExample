@@ -2,14 +2,11 @@ package com.dedio.spekexample.views.base
 
 import android.content.Context
 import android.util.AttributeSet
-import androidx.appcompat.widget.AppCompatImageView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
-open class BaseImageView : AppCompatImageView {
+class BaseSwipeRefreshLayout : SwipeRefreshLayout {
 
     constructor(context: Context) : super(context)
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
-
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs,
-            defStyleAttr)
 }

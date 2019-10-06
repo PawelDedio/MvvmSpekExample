@@ -12,16 +12,31 @@ import com.dedio.spekexample.util.extensions.getStyledAttributes
 import com.dedio.spekexample.util.extensions.loadAnimation
 import com.dedio.spekexample.views.loading.LoadingImageView
 
-class LoadingOverlayView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null,
-                                                   defStyleAttr: Int = 0) :
-        FrameLayout(context, attrs, defStyleAttr) {
+class LoadingOverlayView : FrameLayout {
 
     private val fadeOutAnimation = context.loadAnimation(R.anim.fade_out)
 
     private var loadingImageWidth = context.getDimenInCalculatedPixels(R.dimen.loading_image_size)
     private var loadingImageHeight = context.getDimenInCalculatedPixels(R.dimen.loading_image_size)
 
-    init {
+    constructor(context: Context) : super(context) {
+        setup(context, null)
+    }
+
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
+        setup(context, attrs)
+    }
+
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs,
+            defStyleAttr) {
+        setup(context, attrs)
+    }
+
+    private fun setup(context: Context, attrs: AttributeSet?) {
+        if (attrs == null) {
+            return
+        }
+
         setDefaultAttributes(attrs)
         addLoadingImage()
     }

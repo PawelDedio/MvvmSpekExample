@@ -10,13 +10,31 @@ import com.dedio.spekexample.util.extensions.getStyledAttributes
 import com.dedio.spekexample.views.base.BaseImageView
 
 
-class RoundedCornersImageView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : BaseImageView(context, attrs, defStyleAttr) {
+class RoundedCornersImageView : BaseImageView {
 
-    private var radius = context.resources.getDimensionPixelOffset(R.dimen.rounded_corners_image_view_default_radius)
+    private var radius = context.resources.getDimensionPixelOffset(
+            R.dimen.rounded_corners_image_view_default_radius)
     private var path: Path = Path()
     private lateinit var rect: RectF
 
-    init {
+    constructor(context: Context) : super(context) {
+        setup(context, null)
+    }
+
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
+        setup(context, attrs)
+    }
+
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs,
+            defStyleAttr) {
+        setup(context, attrs)
+    }
+
+    private fun setup(context: Context, attrs: AttributeSet?) {
+        if (attrs == null) {
+            return
+        }
+
         context.getStyledAttributes(attrs, R.styleable.RoundedCornersImageView) {
             radius = getDimensionPixelSize(R.styleable.RoundedCornersImageView_cornerRadius, radius)
         }

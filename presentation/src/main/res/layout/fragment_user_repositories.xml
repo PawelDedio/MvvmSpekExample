@@ -10,16 +10,19 @@
             type="com.dedio.spekexample.user_repositories.UserRepositoriesViewModel" />
     </data>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/LayoutDefault"
         tools:context=".user_repositories.UserRepositoriesFragment">
-
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:layout_width=""
+            android:layout_height=""
+        
+        <com.dedio.spekexample.views.base.BaseTextView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/TextMedium"
             android:text="@{viewModel.userName}" />
 
-    </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

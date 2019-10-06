@@ -5,7 +5,13 @@ import android.graphics.drawable.Animatable
 import android.util.AttributeSet
 import com.dedio.spekexample.views.base.BaseImageView
 
-open class AnimatedImageView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : BaseImageView(context, attrs, defStyleAttr) {
+open class AnimatedImageView : BaseImageView {
+
+    constructor(context: Context) : super(context)
+
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
+
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
     init {
         startAnimation()
