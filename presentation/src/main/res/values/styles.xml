@@ -318,4 +318,9 @@
         <item name="loadingImageWidth">@dimen/loading_image_size</item>
         <item name="loadingImageHeight">@dimen/loading_image_size</item>
     </style>
+
+
+    <!-- Swipe refresh layouts -->
+    <style name="SwipeRefreshDefault" parent="LayoutDefault">
+    </style>
 </resources>

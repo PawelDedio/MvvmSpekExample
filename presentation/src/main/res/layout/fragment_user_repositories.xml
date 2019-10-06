@@ -14,15 +14,18 @@
         style="@style/LayoutDefault"
         tools:context=".user_repositories.UserRepositoriesFragment">
         
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:layout_width=""
-            android:layout_height=""
-        
-        <com.dedio.spekexample.views.base.BaseTextView
+        <com.dedio.spekexample.views.base.BaseSwipeRefreshLayout
+            style="@style/SwipeRefreshDefault"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            style="@style/TextMedium"
-            android:text="@{viewModel.userName}" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:onRefreshListener="@{() -> viewModel.onRefresh()}">
+
+            <com.dedio.spekexample.views.base.BaseRecyclerView
+                android:id="@+id/userRepositoriesRecycler"
+                style="@style/RecyclerDefault"/>
+        </com.dedio.spekexample.views.base.BaseSwipeRefreshLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

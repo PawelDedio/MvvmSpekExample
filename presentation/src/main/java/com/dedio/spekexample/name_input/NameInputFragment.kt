@@ -45,13 +45,7 @@ class NameInputFragment : BaseFragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        observeNavigationEvents()
-    }
-
-    private fun observeNavigationEvents() {
+    override fun observeEvents() {
         viewModel.navigateToRepositoriesAction.observe {
             val action = NameInputFragmentDirections.actionNameInputFragmentToUserRepositoriesFragment(it)
             view?.findNavController()?.navigate(action)

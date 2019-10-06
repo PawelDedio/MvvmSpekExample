@@ -11,7 +11,9 @@ import com.dedio.spekexample.R
 import com.dedio.spekexample.base.BaseFragment
 import com.dedio.spekexample.databinding.FragmentUserRepositoriesBinding
 import com.dedio.spekexample.di.components.ActivityComponent
+import com.dedio.spekexample.models.UserRepositoryUiModel
 import com.dedio.spekexample.util.ViewModelFactory
+import kotlinx.android.synthetic.main.fragment_user_repositories.*
 import javax.inject.Inject
 
 class UserRepositoriesFragment : BaseFragment() {
@@ -23,6 +25,9 @@ class UserRepositoriesFragment : BaseFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
+
+    @Inject
+    lateinit var repositoriesAdapter: RepositoriesAdapter
 
     override fun makeInject(component: ActivityComponent) = component.inject(this)
 
@@ -43,5 +48,19 @@ class UserRepositoriesFragment : BaseFragment() {
         )
 
         return binding.root
+    }
+
+    override fun observeEvents() {
+        viewModel.userRepositories.observe {
+            showRepositories(it.repositories)
+        }
+    }
+
+    private fun showRepositories(list: List<UserRepositoryUiModel>) {
+        repositoriesAdapter.submitList(list)
+
+        if(userRepositoriesRecycler.adapter == null) {
+            userRepositoriesRecycler.adapter = repositoriesAdapter
+        }
     }
 }
