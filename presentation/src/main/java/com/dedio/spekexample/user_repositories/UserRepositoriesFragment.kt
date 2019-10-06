@@ -28,7 +28,7 @@ class UserRepositoriesFragment : BaseFragment() {
 
     override fun initViewModel() {
         viewModel = getViewModel(requireActivity(), viewModelFactory)
-        viewModel.repositories.value = args.userRepositories
+        viewModel.userName.value = args.userName
     }
 
     override fun onCreateView(

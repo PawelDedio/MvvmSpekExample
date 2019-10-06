@@ -16,8 +16,8 @@
         android:name="com.dedio.spekexample.user_repositories.UserRepositoriesFragment"
         android:label="UserRepositoriesFragment" >
         <argument
-            android:name="userRepositories"
-            app:argType="com.dedio.spekexample.models.UserRepositoriesUiModel" />
+            android:name="userName"
+            app:argType="string" />
     </fragment>
 
 </navigation>
