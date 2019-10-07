@@ -14,6 +14,7 @@ import com.dedio.spekexample.common.features.HasLoader
 import com.dedio.spekexample.di.components.ActivityComponent
 import com.dedio.spekexample.util.KeyboardHelper
 import com.dedio.spekexample.util.ViewModelFactory
+import com.google.android.material.snackbar.Snackbar
 import javax.inject.Inject
 
 abstract class BaseFragment : Fragment() {
@@ -73,6 +74,10 @@ abstract class BaseFragment : Fragment() {
     }
 
     protected open fun observeEvents() {
+    }
+
+    protected fun showSnackbar(message: String, duration: Int = Snackbar.LENGTH_LONG) {
+        (activity as? BaseActivity)?.showSnackbar(message, duration)
     }
 
     abstract fun makeInject(component: ActivityComponent)

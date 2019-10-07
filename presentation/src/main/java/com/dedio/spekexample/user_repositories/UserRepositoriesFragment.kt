@@ -32,7 +32,7 @@ class UserRepositoriesFragment : BaseFragment() {
     override fun makeInject(component: ActivityComponent) = component.inject(this)
 
     override fun initViewModel() {
-        viewModel = getViewModel(requireActivity(), viewModelFactory)
+        viewModel = getViewModel(viewModelFactory)
         viewModel.userName.value = args.userName
     }
 
@@ -54,13 +54,24 @@ class UserRepositoriesFragment : BaseFragment() {
         viewModel.userRepositories.observe {
             showRepositories(it.repositories)
         }
+        viewModel.errorMessage.observe {
+            showSnackbar(it)
+        }
+        viewModel.navigateToRepositoriesAction.observe {
+            navigateToCommitsScreen(it)
+        }
     }
 
     private fun showRepositories(list: List<UserRepositoryUiModel>) {
         repositoriesAdapter.submitList(list)
 
         if(userRepositoriesRecycler.adapter == null) {
+            repositoriesAdapter.onItemClickListener = viewModel::onRepositoryClicked
             userRepositoriesRecycler.adapter = repositoriesAdapter
         }
+    }
+
+    private fun navigateToCommitsScreen(model: UserRepositoryUiModel) {
+
     }
 }

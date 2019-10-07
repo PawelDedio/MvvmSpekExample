@@ -1,6 +1,7 @@
 package com.dedio.spekexample.base
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -12,6 +13,8 @@ import com.dedio.spekexample.common.features.HasComponent
 import com.dedio.spekexample.di.Injector
 import com.dedio.spekexample.di.components.ActivityComponent
 import com.dedio.spekexample.util.ViewModelFactory
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.activity_main.*
 
 abstract class BaseActivity : AppCompatActivity(), HasComponent<ActivityComponent> {
 
@@ -42,6 +45,11 @@ abstract class BaseActivity : AppCompatActivity(), HasComponent<ActivityComponen
 
     fun <T> LiveData<T>.observe(onChanged: (T) -> Unit) {
         this.observe(this@BaseActivity, onChanged)
+    }
+
+    fun showSnackbar(message: String, duration: Int = Snackbar.LENGTH_LONG) {
+        val snackbar = Snackbar.make(mainNavHostFragment.requireView(), message, duration)
+        snackbar.show()
     }
 }
 

@@ -6,8 +6,10 @@ import com.dedio.spekexample.MainApplication
 import com.dedio.spekexample.R
 import com.dedio.spekexample.base.BaseViewModel
 import com.dedio.spekexample.models.UserRepositoriesUiModel
+import com.dedio.spekexample.models.UserRepositoryUiModel
 import com.dedio.spekexample.models.toUiModel
 import com.dedio.spekexample.util.ResourceRepository
+import com.dedio.spekexample.util.delegators.LiveEventProvider
 import com.dedio.spekexample.util.delegators.MutableLiveDataProvider
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,7 +21,9 @@ class UserRepositoriesViewModel @Inject constructor(application: MainApplication
 
     val userName by MutableLiveDataProvider<String>()
     val userRepositories by MutableLiveDataProvider<UserRepositoriesUiModel>()
-    val errorMessage by MutableLiveDataProvider<String>()
+
+    val errorMessage by LiveEventProvider<String>()
+    val navigateToRepositoriesAction by LiveEventProvider<UserRepositoryUiModel>()
 
     init {
         loadRepositories()
@@ -27,6 +31,10 @@ class UserRepositoriesViewModel @Inject constructor(application: MainApplication
 
     fun onRefresh() {
         loadRepositories(true)
+    }
+
+    fun onRepositoryClicked(model: UserRepositoryUiModel) {
+        navigateToRepositoriesAction.postValue(model)
     }
 
     private fun loadRepositories(forceRefresh: Boolean = false) {
@@ -38,10 +46,14 @@ class UserRepositoriesViewModel @Inject constructor(application: MainApplication
                 getRepositoriesUseCase.execute(params).whenOk {
                     val model = this.value.toUiModel(userName.value!!)
                     userRepositories.postValue(model)
-                }.whenError {
-                    val error = resourceRepository.getString(R.string.name_input_error_wrong_name)
+                }.whenNetworkError {
+                    val error = resourceRepository.getString(R.string.error_no_connection)
                     errorMessage.postValue(error)
-                }
+                }.whenApiError {
+                            val error = resourceRepository.getString(
+                                    R.string.name_input_error_wrong_name)
+                            errorMessage.postValue(error)
+                        }
 
                 hideLoading()
             }

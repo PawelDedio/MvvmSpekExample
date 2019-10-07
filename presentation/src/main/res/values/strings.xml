@@ -4,6 +4,7 @@
 
     <!-- Common -->
     <string name="search">Search</string>
+    <string name="error_no_connection">No internet, please check your connection.</string>
 
 
     <!-- Name Input Fragment -->
