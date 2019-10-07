@@ -1,8 +1,7 @@
 package com.dedio.spekexample.di.modules
 
-import androidx.room.Room
-import com.dedio.cache.DATABASE_FILE_NAME
-import com.dedio.cache.Database
+import android.content.Context
+import android.view.inputmethod.InputMethodManager
 import com.dedio.cache.data_sources.github.CachedGithubDataSourceImpl
 import com.dedio.data.data_sources.github.CachedGithubDataSource
 import com.dedio.data.data_sources.github.RemoteGithubDataSource
@@ -16,6 +15,7 @@ import com.dedio.domain.utils.SerializationHelper
 import com.dedio.domain.utils.ValidationHelper
 import com.dedio.remote.data_sources.github.RemoteGithubDataSourceImpl
 import com.dedio.spekexample.MainApplication
+import com.dedio.spekexample.util.KeyboardHelper
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -59,4 +59,16 @@ class AppModule(private val context: MainApplication) {
     @Provides
     @Singleton
     fun providesValidationHelper(impl: ValidationHelperImpl) = impl as ValidationHelper
+
+    @Provides
+    @Singleton
+    fun provideInputMethodManager(context: Context): InputMethodManager {
+        return context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    }
+
+    @Provides
+    @Singleton
+    fun provideKeyboardHelper(imm: InputMethodManager): KeyboardHelper {
+        return KeyboardHelper(imm)
+    }
 }

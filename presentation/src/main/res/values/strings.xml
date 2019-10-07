@@ -12,6 +12,7 @@
     <string name="name_input_error_empty_name">User name cannot be empty</string>
     <string name="name_input_error_wrong_name">Cannot load repositories for this user</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- User Repositories Fragment -->
+    <string name="user_repositories_cell_id_format">Id: %s</string>
+    <string name="user_repositories_cell_node_id_format">Node id: %s</string>
 </resources>

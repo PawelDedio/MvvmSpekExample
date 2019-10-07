@@ -14,7 +14,8 @@ import javax.inject.Inject
 
 class UserRepositoriesViewModel @Inject constructor(application: MainApplication,
                                                     private val resourceRepository: ResourceRepository,
-                                                    private val getRepositoriesUseCase: GetRepositoriesUseCase) : BaseViewModel(application, resourceRepository) {
+                                                    private val getRepositoriesUseCase: GetRepositoriesUseCase) :
+        BaseViewModel(application, resourceRepository) {
 
     val userName by MutableLiveDataProvider<String>()
     val userRepositories by MutableLiveDataProvider<UserRepositoriesUiModel>()

@@ -20,11 +20,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:onRefreshListener="@{() -> viewModel.onRefresh()}">
+            app:onRefreshListener="@{() -> viewModel.onRefresh()}"
+            app:refreshing="@{viewModel.isLoading}">
 
             <com.dedio.spekexample.views.base.BaseRecyclerView
                 android:id="@+id/userRepositoriesRecycler"
-                style="@style/RecyclerDefault"/>
+                style="@style/RecyclerDefault"
+                app:showDivider="true"
+                tools:listitem="@layout/cell_user_repositories"/>
         </com.dedio.spekexample.views.base.BaseSwipeRefreshLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

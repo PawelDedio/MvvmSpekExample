@@ -4,6 +4,7 @@ import com.dedio.domain.utils.ValidationHelper
 import com.dedio.spekexample.MainApplication
 import com.dedio.spekexample.R
 import com.dedio.spekexample.base.BaseViewModel
+import com.dedio.spekexample.util.KeyboardHelper
 import com.dedio.spekexample.util.ResourceRepository
 import com.dedio.spekexample.util.delegators.LiveEventProvider
 import com.dedio.spekexample.util.delegators.MutableLiveDataProvider
@@ -20,6 +21,7 @@ class NameInputViewModel @Inject constructor(application: MainApplication,
     val navigateToRepositoriesAction by LiveEventProvider<String>()
 
     fun onSearchClick() {
+        hideKeyboard()
         clearErrors()
 
         if(!validateAndShowError()) {

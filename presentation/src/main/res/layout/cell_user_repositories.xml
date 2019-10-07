@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -11,6 +12,43 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/LayoutCell">
 
-        
+        <com.dedio.spekexample.views.base.BaseTextView
+            android:id="@+id/userRepositoriesCellId"
+            android:text="@{@string/user_repositories_cell_id_format(item.id)}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/TextSmall"
+            tools:text="Id: repositoryId"/>
+
+        <com.dedio.spekexample.views.base.BaseTextView
+            android:id="@+id/userRepositoriesCellNodeId"
+            android:layout_marginStart="@dimen/spacing_medium"
+            app:layout_constraintStart_toEndOf="@id/userRepositoriesCellId"
+            app:layout_constraintTop_toTopOf="@id/userRepositoriesCellId"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            android:ellipsize="end"
+            app:layout_constrainedWidth="true"
+            android:maxLines="1"
+            android:text="@{@string/user_repositories_cell_node_id_format(item.nodeId)}"
+            tools:text="Node id: repositoryNodeId"
+            style="@style/TextSmall"/>
+
+        <com.dedio.spekexample.views.base.BaseTextView
+            android:id="@+id/userRepositoriesCellName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/userRepositoriesCellId"
+            android:text="@{item.name}"
+            android:layout_marginTop="@dimen/spacing_3x_small"
+            tools:text="Some great repository"
+            style="@style/TextMediumBold"/>
+
+        <com.dedio.spekexample.views.base.BaseTextView
+            android:id="@+id/userRepositoriesCellDescription"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/userRepositoriesCellName"
+            android:text="@{item.description}"
+            style="@style/TextMedium"
+            tools:text="Some great repository description"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

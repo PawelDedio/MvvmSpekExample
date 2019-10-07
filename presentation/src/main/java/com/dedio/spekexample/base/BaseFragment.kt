@@ -12,13 +12,18 @@ import androidx.lifecycle.*
 import com.dedio.spekexample.common.features.HasComponent
 import com.dedio.spekexample.common.features.HasLoader
 import com.dedio.spekexample.di.components.ActivityComponent
+import com.dedio.spekexample.util.KeyboardHelper
 import com.dedio.spekexample.util.ViewModelFactory
+import javax.inject.Inject
 
 abstract class BaseFragment : Fragment() {
 
     protected val activityComponent by lazy {
         (activity as HasComponent<ActivityComponent>).getComponent()
     }
+
+    @Inject
+    lateinit var keyboardHelper: KeyboardHelper
 
     inline fun <reified T : ViewModel> getViewModel(factory: ViewModelFactory) = ViewModelProviders.of(this, factory).get(T::class.java)
     inline fun <reified T : ViewModel> getViewModel(activity: FragmentActivity, factory: ViewModelFactory) = ViewModelProviders.of(activity, factory).get(T::class.java)
@@ -53,11 +58,18 @@ abstract class BaseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        configureKeyboard()
         observeEvents()
     }
 
     private fun configureLoading() {
         (activity as? HasLoader)?.observeLoading(getViewModel().isLoading)
+    }
+
+    private fun configureKeyboard() {
+        getViewModel().hideKeyboardAction.observe {
+            keyboardHelper.hideKeyboard(view)
+        }
     }
 
     protected open fun observeEvents() {

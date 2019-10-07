@@ -4,12 +4,15 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.dedio.spekexample.MainApplication
 import com.dedio.spekexample.util.ResourceRepository
+import com.dedio.spekexample.util.delegators.LiveEventProvider
 import com.dedio.spekexample.util.delegators.MutableLiveDataProvider
 
 abstract class BaseViewModel(application: MainApplication, private val resourceRepository: ResourceRepository) : AndroidViewModel(application) {
 
     protected val _isLoading by MutableLiveDataProvider<Boolean>()
     val isLoading = _isLoading as LiveData<Boolean>
+
+    val hideKeyboardAction by LiveEventProvider<Unit?>()
 
     fun getResString(id: Int) = resourceRepository.getString(id)
 
@@ -33,5 +36,9 @@ abstract class BaseViewModel(application: MainApplication, private val resourceR
         } else {
             _isLoading.postValue(value)
         }
+    }
+
+    protected fun hideKeyboard() {
+        hideKeyboardAction.postValue(null)
     }
 }
