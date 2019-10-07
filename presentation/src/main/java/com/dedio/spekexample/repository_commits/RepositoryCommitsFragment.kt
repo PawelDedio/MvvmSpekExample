@@ -11,7 +11,9 @@ import com.dedio.spekexample.base.BaseFragment
 import com.dedio.spekexample.databinding.FragmentNameInputBinding
 import com.dedio.spekexample.databinding.FragmentRepositoryCommitsBinding
 import com.dedio.spekexample.di.components.ActivityComponent
+import com.dedio.spekexample.models.RepositoryCommitUiModel
 import com.dedio.spekexample.util.ViewModelFactory
+import kotlinx.android.synthetic.main.fragment_repository_commits.*
 import javax.inject.Inject
 
 class RepositoryCommitsFragment : BaseFragment() {
@@ -23,6 +25,9 @@ class RepositoryCommitsFragment : BaseFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
+
+    @Inject
+    lateinit var repositoryCommitsAdapter: RepositoryCommitsAdapter
 
     override fun makeInject(component: ActivityComponent) = component.inject(this)
 
@@ -43,5 +48,19 @@ class RepositoryCommitsFragment : BaseFragment() {
         )
 
         return binding.root
+    }
+
+    override fun observeEvents() {
+        viewModel.commits.observe {
+            showRepositories(it.repositories)
+        }
+    }
+
+    private fun showRepositories(list: List<RepositoryCommitUiModel>) {
+        repositoryCommitsAdapter.submitList(list)
+
+        if(repositoryCommitsRecycler.adapter == null) {
+            repositoryCommitsRecycler.adapter == repositoryCommitsAdapter
+        }
     }
 }

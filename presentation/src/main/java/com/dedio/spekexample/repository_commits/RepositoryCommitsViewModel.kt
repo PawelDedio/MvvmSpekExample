@@ -2,6 +2,7 @@ package com.dedio.spekexample.repository_commits
 
 import com.dedio.spekexample.MainApplication
 import com.dedio.spekexample.base.BaseViewModel
+import com.dedio.spekexample.models.RepositoryCommitsUiModel
 import com.dedio.spekexample.models.UserRepositoryUiModel
 import com.dedio.spekexample.util.ResourceRepository
 import com.dedio.spekexample.util.delegators.MutableLiveDataProvider
@@ -12,6 +13,6 @@ class RepositoryCommitsViewModel @Inject constructor(application: MainApplicatio
         BaseViewModel(application, resourceRepository) {
 
     val repository by MutableLiveDataProvider<UserRepositoryUiModel>()
-
+    val commits by MutableLiveDataProvider<RepositoryCommitsUiModel>()
 
 }
