@@ -9,23 +9,22 @@
             type="com.dedio.spekexample.models.RepositoryCommitUiModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/LayoutCell">
-
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/LayoutCell">
         <com.dedio.spekexample.views.base.BaseTextView
             android:id="@+id/repositoryCommitsCellSha"
             style="@style/TextSmall"
+            android:text="@{@string/repository_commits_cell_sha_format(item.sha)}"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="@{item.sha}"
-            tools:text="sfdfsa3442sa"/>
+            tools:text="sfdfsa3442sa" />
 
         <com.dedio.spekexample.views.base.BaseTextView
             android:id="@+id/repositoryCommistCellMessage"
             style="@style/TextMedium"
             android:text="@{item.message}"
-            app:layout_constraintTop_toBottomOf="@id/repositoryCommitsCellSha"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="Template commit message"/>
+            app:layout_constraintTop_toBottomOf="@id/repositoryCommitsCellSha"
+            tools:text="Template commit message" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

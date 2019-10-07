@@ -9,46 +9,44 @@
             type="com.dedio.spekexample.models.UserRepositoryUiModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/LayoutCell">
-
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/LayoutCell">
         <com.dedio.spekexample.views.base.BaseTextView
             android:id="@+id/userRepositoriesCellId"
-            android:text="@{@string/user_repositories_cell_id_format(item.id)}"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             style="@style/TextSmall"
-            tools:text="Id: repositoryId"/>
+            android:text="@{@string/user_repositories_cell_id_format(item.id)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Id: repositoryId" />
 
         <com.dedio.spekexample.views.base.BaseTextView
             android:id="@+id/userRepositoriesCellNodeId"
+            style="@style/TextSmall"
             android:layout_marginStart="@dimen/spacing_medium"
-            app:layout_constraintStart_toEndOf="@id/userRepositoriesCellId"
-            app:layout_constraintTop_toTopOf="@id/userRepositoriesCellId"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0"
             android:ellipsize="end"
-            app:layout_constrainedWidth="true"
             android:maxLines="1"
             android:text="@{@string/user_repositories_cell_node_id_format(item.nodeId)}"
-            tools:text="Node id: repositoryNodeId"
-            style="@style/TextSmall"/>
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/userRepositoriesCellId"
+            app:layout_constraintTop_toTopOf="@id/userRepositoriesCellId"
+            tools:text="Node id: repositoryNodeId" />
 
         <com.dedio.spekexample.views.base.BaseTextView
             android:id="@+id/userRepositoriesCellName"
+            style="@style/TextMediumBold"
+            android:layout_marginTop="@dimen/spacing_3x_small"
+            android:text="@{item.name}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/userRepositoriesCellId"
-            android:text="@{item.name}"
-            android:layout_marginTop="@dimen/spacing_3x_small"
-            tools:text="Some great repository"
-            style="@style/TextMediumBold"/>
+            tools:text="Some great repository" />
 
         <com.dedio.spekexample.views.base.BaseTextView
             android:id="@+id/userRepositoriesCellDescription"
+            style="@style/TextMedium"
+            android:text="@{item.description}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/userRepositoriesCellName"
-            android:text="@{item.description}"
-            style="@style/TextMedium"
-            tools:text="Some great repository description"/>
+            tools:text="Some great repository description" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

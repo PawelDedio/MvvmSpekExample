@@ -17,4 +17,7 @@
     <string name="user_repositories_cell_id_format">Id: %s</string>
     <string name="user_repositories_cell_node_id_format">Node id: %s</string>
     <string name="user_repositories_loading_error">Cannot load repository commits</string>
+
+    <!-- Repository Commits Fragment -->
+    <string name="repository_commits_cell_sha_format">Sha: %s</string>
 </resources>
