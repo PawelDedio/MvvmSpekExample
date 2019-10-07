@@ -5,20 +5,53 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.dedio.spekexample.repository_commits.RepositoryCommitsViewModel" />
     </data>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/LayoutDefault"
         tools:context=".repository_commits.RepositoryCommitsFragment">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@{viewModel.repository.name}" />
+        <com.dedio.spekexample.views.base.BaseTextView
+            android:id="@+id/repositoryCommitsRepositoryName"
+            style="@style/TextMediumBold"
+            android:layout_marginStart="@dimen/spacing_medium"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:text="@{viewModel.repository.name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Great repository name" />
 
-    </FrameLayout>
+        <com.dedio.spekexample.views.base.BaseTextView
+            android:id="@+id/repositoryCommitsRepositoryDescription"
+            style="@style/TextMedium"
+            android:text="@{viewModel.repository.description}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@id/repositoryCommitsRepositoryName"
+            app:layout_constraintTop_toBottomOf="@id/repositoryCommitsRepositoryName"
+            tools:text="Great repository description" />
+
+        <com.dedio.spekexample.views.base.BaseSwipeRefreshLayout
+            style="@style/SwipeRefreshDefault"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/repositoryCommitsRepositoryDescription"
+            app:onRefreshListener="@{() -> viewModel.onRefresh()}"
+            app:refreshing="@{viewModel.isLoading}">
+
+            <com.dedio.spekexample.views.base.BaseRecyclerView
+                android:id="@+id/repositoryCommitsRecycler"
+                style="@style/RecyclerDefault"
+                app:showDivider="true"
+                tools:listitem="@layout/cell_repository_commits" />
+        </com.dedio.spekexample.views.base.BaseSwipeRefreshLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
