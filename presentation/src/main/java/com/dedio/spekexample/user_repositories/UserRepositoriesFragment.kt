@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.dedio.spekexample.BR
 import com.dedio.spekexample.R
@@ -72,6 +73,7 @@ class UserRepositoriesFragment : BaseFragment() {
     }
 
     private fun navigateToCommitsScreen(model: UserRepositoryUiModel) {
-
+        val action = UserRepositoriesFragmentDirections.actionUserRepositoriesFragmentToRepositoryCommitsFragment(model)
+        view?.findNavController()?.navigate(action)
     }
 }

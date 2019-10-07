@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.dedio.spekexample.base.BaseViewModel
 import com.dedio.spekexample.di.annotations.ViewModelKey
 import com.dedio.spekexample.name_input.NameInputViewModel
+import com.dedio.spekexample.repository_commits.RepositoryCommitsViewModel
 import com.dedio.spekexample.user_repositories.UserRepositoriesViewModel
 import com.dedio.spekexample.util.ViewModelFactory
 import dagger.Binds
@@ -25,4 +26,9 @@ abstract class ViewModelsModule {
     @IntoMap
     @ViewModelKey(UserRepositoriesViewModel::class)
     abstract fun bindUserRepositoriesViewModel(viewModel: UserRepositoriesViewModel): BaseViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(RepositoryCommitsViewModel::class)
+    abstract fun bindRepositoryCommitsViewModel(viewModel: RepositoryCommitsViewModel): BaseViewModel
 }

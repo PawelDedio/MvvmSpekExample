@@ -46,7 +46,6 @@ dependencies {
     implementation project(':remote')
     implementation project(':cache')
 
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     presentationDependencies.each {
         implementation it
     }
