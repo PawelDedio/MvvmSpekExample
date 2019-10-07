@@ -5,4 +5,6 @@ import com.google.gson.annotations.SerializedName
 class RepositoryCommitsResponse : ArrayList<RepositoryCommitsItem>()
 
 data class RepositoryCommitsItem(@SerializedName("sha") val sha: String, @SerializedName(
-        "message") val message: String)
+        "commit") val commit: RepositoryCommitsCommit)
+
+data class RepositoryCommitsCommit(@SerializedName("message") val message: String)

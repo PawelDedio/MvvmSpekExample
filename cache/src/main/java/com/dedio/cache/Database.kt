@@ -12,7 +12,7 @@ import com.dedio.cache.utils.RepositoryListTypeConverter
 
 const val DATABASE_FILE_NAME = "MvvmSpekExample.db"
 
-@Database(entities = [GithubRepositories::class, GithubRepositoryCommits::class], version = 1)
+@Database(entities = [GithubRepositories::class, GithubRepositoryCommits::class], version = 2)
 @TypeConverters(RepositoryListTypeConverter::class, RepositoryCommitsListTypeConverter::class)
 abstract class Database : RoomDatabase() {
 

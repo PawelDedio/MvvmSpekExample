@@ -2,7 +2,10 @@ package com.dedio.spekexample.base
 
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import com.dedio.domain.models.BaseResult
 import com.dedio.spekexample.MainApplication
+import com.dedio.spekexample.R
+import com.dedio.spekexample.util.LiveEvent
 import com.dedio.spekexample.util.ResourceRepository
 import com.dedio.spekexample.util.delegators.LiveEventProvider
 import com.dedio.spekexample.util.delegators.MutableLiveDataProvider
@@ -40,5 +43,10 @@ abstract class BaseViewModel(application: MainApplication, private val resourceR
 
     protected fun hideKeyboard() {
         hideKeyboardAction.postValue(null)
+    }
+
+    protected fun actionForNoInternet(errorMessage: LiveEvent<String>): ((error: BaseResult.NetworkError) -> Unit) = {
+        val error = resourceRepository.getString(R.string.error_no_connection)
+        errorMessage.postValue(error)
     }
 }

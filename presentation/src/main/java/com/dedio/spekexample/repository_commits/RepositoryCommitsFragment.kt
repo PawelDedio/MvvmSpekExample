@@ -54,13 +54,16 @@ class RepositoryCommitsFragment : BaseFragment() {
         viewModel.commits.observe {
             showRepositories(it.repositories)
         }
+        viewModel.errorMessage.observe {
+            showSnackbar(it)
+        }
     }
 
     private fun showRepositories(list: List<RepositoryCommitUiModel>) {
         repositoryCommitsAdapter.submitList(list)
 
         if(repositoryCommitsRecycler.adapter == null) {
-            repositoryCommitsRecycler.adapter == repositoryCommitsAdapter
+            repositoryCommitsRecycler.adapter = repositoryCommitsAdapter
         }
     }
 }

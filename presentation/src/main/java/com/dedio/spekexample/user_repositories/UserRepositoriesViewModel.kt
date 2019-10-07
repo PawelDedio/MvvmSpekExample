@@ -44,16 +44,12 @@ class UserRepositoriesViewModel @Inject constructor(application: MainApplication
                 showLoading()
 
                 getRepositoriesUseCase.execute(params).whenOk {
-                    val model = this.value.toUiModel(userName.value!!)
+                    val model = value.toUiModel(userName.value!!)
                     userRepositories.postValue(model)
-                }.whenNetworkError {
-                    val error = resourceRepository.getString(R.string.error_no_connection)
+                }.whenNetworkError(actionForNoInternet(errorMessage)).whenApiError {
+                    val error = resourceRepository.getString(R.string.name_input_error_wrong_name)
                     errorMessage.postValue(error)
-                }.whenApiError {
-                            val error = resourceRepository.getString(
-                                    R.string.name_input_error_wrong_name)
-                            errorMessage.postValue(error)
-                        }
+                }
 
                 hideLoading()
             }
