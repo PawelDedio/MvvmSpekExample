@@ -15,7 +15,7 @@ class GithubRepositoriesRepositoryImpl @Inject constructor(
                                          forceRefresh: Boolean): BaseResult<RepositoryListResponse> {
         if(forceRefresh) {
             return remoteSource.getRepositories(userName).whenOk {
-                cachedSource.setRepositories(userName, this.value)
+                cachedSource.setRepositories(userName, value)
             }
         } else {
             return cachedSource.getRepositories(userName).whenError {

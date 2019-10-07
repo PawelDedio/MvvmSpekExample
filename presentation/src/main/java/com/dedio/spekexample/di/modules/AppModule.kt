@@ -5,10 +5,12 @@ import android.view.inputmethod.InputMethodManager
 import com.dedio.cache.data_sources.github.CachedGithubDataSourceImpl
 import com.dedio.data.data_sources.github.CachedGithubDataSource
 import com.dedio.data.data_sources.github.RemoteGithubDataSource
+import com.dedio.data.repositories.GithubCommitRepositoryImpl
 import com.dedio.data.repositories.GithubRepositoriesRepositoryImpl
 import com.dedio.data.utils.DispatcherProviderImpl
 import com.dedio.data.utils.SerializationHelperImpl
 import com.dedio.data.utils.ValidationHelperImpl
+import com.dedio.domain.repositories.GithubCommitsRepository
 import com.dedio.domain.repositories.GithubRepositoriesRepository
 import com.dedio.domain.utils.DispatcherProvider
 import com.dedio.domain.utils.SerializationHelper
@@ -71,4 +73,8 @@ class AppModule(private val context: MainApplication) {
     fun provideKeyboardHelper(imm: InputMethodManager): KeyboardHelper {
         return KeyboardHelper(imm)
     }
+
+    @Provides
+    @Singleton
+    fun providesGithubCommitsRepository(impl: GithubCommitRepositoryImpl) = impl as GithubCommitsRepository
 }

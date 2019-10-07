@@ -6,9 +6,10 @@ import androidx.room.PrimaryKey
 import com.dedio.domain.models.RepositoryListResponse
 
 const val GITHUB_REPOSITORIES_TABLE = "github_repositories"
-const val USER_NAME_COLUMN = "user_name"
-const val REPOSITORY_LIST_COLUMN = "repository_list"
+const val REPOSITORIES_USER_NAME_COLUMN = "user_name"
+const val REPOSITORIES_REPOSITORY_LIST_COLUMN = "repository_list"
 
 @Entity(tableName = GITHUB_REPOSITORIES_TABLE)
-data class GithubRepositories(@PrimaryKey @ColumnInfo(name = USER_NAME_COLUMN) val userName: String,
-                              @ColumnInfo(name = REPOSITORY_LIST_COLUMN) val repositoryList: RepositoryListResponse)
+data class GithubRepositories(@PrimaryKey @ColumnInfo(
+        name = REPOSITORIES_USER_NAME_COLUMN) val userName: String, @ColumnInfo(
+        name = REPOSITORIES_REPOSITORY_LIST_COLUMN) val repositoryList: RepositoryListResponse)

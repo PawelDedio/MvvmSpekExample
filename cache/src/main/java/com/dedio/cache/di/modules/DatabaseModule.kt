@@ -19,4 +19,8 @@ class DatabaseModule() {
     @Provides
     @Singleton
     fun providesGithubRepositoriesDao(database: Database) = database.githubRepositoriesDao()
+
+    @Provides
+    @Singleton
+    fun providesGithubRepositoryCommitsDao(database: Database) = database.githubRepositoryCommitsDao()
 }
