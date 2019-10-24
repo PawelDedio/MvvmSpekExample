@@ -1,4 +1,4 @@
-package com.treeline.cleantemplate.presentation.util.delegators
+package com.dedio.spekexample.util.delegators
 
 import androidx.lifecycle.MutableLiveData
 import com.nhaarman.mockitokotlin2.mock

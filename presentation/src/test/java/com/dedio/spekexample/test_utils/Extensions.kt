@@ -1,4 +1,4 @@
-package com.treeline.cleantemplate.presentation.testeUtil
+package com.dedio.spekexample.test_utils
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

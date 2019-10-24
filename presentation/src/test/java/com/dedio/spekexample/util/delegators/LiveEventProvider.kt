@@ -1,7 +1,7 @@
-package com.treeline.cleantemplate.presentation.util.delegators
+package com.dedio.spekexample.util.delegators
 
+import com.dedio.spekexample.util.LiveEvent
 import com.nhaarman.mockitokotlin2.mock
-import com.treeline.cleantemplate.presentation.util.LiveEvent
 import kotlin.reflect.KProperty
 
 class LiveEventProvider<T>(private val liveEvent: LiveEvent<T> = mock()) {
