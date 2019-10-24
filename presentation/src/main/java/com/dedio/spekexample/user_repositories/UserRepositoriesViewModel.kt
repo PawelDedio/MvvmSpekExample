@@ -23,7 +23,7 @@ class UserRepositoriesViewModel @Inject constructor(application: MainApplication
     val userRepositories by MutableLiveDataProvider<UserRepositoriesUiModel>()
 
     val errorMessage by LiveEventProvider<String>()
-    val navigateToRepositoriesAction by LiveEventProvider<UserRepositoryUiModel>()
+    val navigateToCommitsAction by LiveEventProvider<UserRepositoryUiModel>()
 
     init {
         loadRepositories()
@@ -34,7 +34,7 @@ class UserRepositoriesViewModel @Inject constructor(application: MainApplication
     }
 
     fun onRepositoryClicked(model: UserRepositoryUiModel) {
-        navigateToRepositoriesAction.postValue(model)
+        navigateToCommitsAction.postValue(model)
     }
 
     private fun loadRepositories(forceRefresh: Boolean = false) {

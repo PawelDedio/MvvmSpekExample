@@ -27,7 +27,7 @@ class NameInputViewModelTest : Spek({
         Dispatchers.setMain(TestCoroutineDispatcher())
     }
 
-    describe("onSearchClick") {
+    describe("onSearchClick()") {
 
         fun callMethod() = subject.onSearchClick()
 

@@ -12,8 +12,7 @@ import com.dedio.spekexample.util.delegators.MutableLiveDataProvider
 
 abstract class BaseViewModel(application: MainApplication, private val resourceRepository: ResourceRepository) : AndroidViewModel(application) {
 
-    protected val _isLoading by MutableLiveDataProvider<Boolean>()
-    val isLoading = _isLoading as LiveData<Boolean>
+    val isLoading by MutableLiveDataProvider<Boolean>()
 
     val hideKeyboardAction by LiveEventProvider<Unit?>()
 
@@ -22,7 +21,7 @@ abstract class BaseViewModel(application: MainApplication, private val resourceR
     override fun onCleared() {
         super.onCleared()
 
-        _isLoading.postValue(false)
+        isLoading.postValue(false)
     }
 
     protected fun showLoading(isCalledFromMainThread: Boolean = true) {
@@ -35,9 +34,9 @@ abstract class BaseViewModel(application: MainApplication, private val resourceR
 
     private fun safeCallIsLoading(value: Boolean, isCalledFromMainThread: Boolean) {
         if(isCalledFromMainThread) {
-            _isLoading.value = value
+            isLoading.value = value
         } else {
-            _isLoading.postValue(value)
+            isLoading.postValue(value)
         }
     }
 

@@ -58,7 +58,7 @@ class UserRepositoriesFragment : BaseFragment() {
         viewModel.errorMessage.observe {
             showSnackbar(it)
         }
-        viewModel.navigateToRepositoriesAction.observe {
+        viewModel.navigateToCommitsAction.observe {
             navigateToCommitsScreen(it)
         }
     }

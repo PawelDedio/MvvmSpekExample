@@ -5,17 +5,17 @@ import com.dedio.domain.models.RepositoryListItem
 import com.dedio.domain.models.RepositoryListResponse
 import com.dedio.domain.use_cases.GetRepositoriesUseCase
 import com.dedio.spekexample.MainApplication
-import com.dedio.spekexample.test_utils.asMutable
+import com.dedio.spekexample.R
+import com.dedio.spekexample.models.UserRepositoryUiModel
+import com.dedio.spekexample.models.toUiModel
 import com.dedio.spekexample.util.ResourceRepository
-import com.nhaarman.mockitokotlin2.any
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.whenever
+import com.nhaarman.mockitokotlin2.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.setMain
+import org.mockito.Mockito
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 
@@ -39,8 +39,35 @@ class UserRepositoriesViewModelTest : Spek({
         response
     }
 
+    val dispatcher = TestCoroutineDispatcher()
+
     beforeEachTest {
-        Dispatchers.setMain(TestCoroutineDispatcher())
+        Dispatchers.setMain(dispatcher)
+    }
+
+    describe("init") {
+        fun callMethod(userName: String = "testName"): UserRepositoriesViewModel {
+            Mockito.clearInvocations(getRepositoriesUseCase)
+
+            dispatcher.pauseDispatcher()
+            val subject = UserRepositoriesViewModel(application, resourcesRepository,
+                    getRepositoriesUseCase)
+            whenever(subject.userName.value).thenReturn(userName)
+            dispatcher.resumeDispatcher()
+
+            return subject
+        }
+
+        it("should call use case method with correct params") {
+            val userName = "userName"
+            val requiredParams = GetRepositoriesUseCase.Params(userName, false)
+
+            callMethod(userName)
+
+            runBlocking {
+                verify(getRepositoriesUseCase).execute(requiredParams)
+            }
+        }
     }
 
     describe("onRefresh()") {
@@ -50,10 +77,15 @@ class UserRepositoriesViewModelTest : Spek({
             subject.onRefresh()
         }
 
-        it("should show loading") {
+        it("should show loading before use case call") {
+            val inOrder = inOrder(subject.isLoading, getRepositoriesUseCase)
+
             callMethod()
 
-            verify(subject.isLoading.asMutable()).value = true
+            inOrder.verify(subject.isLoading).value = true
+            runBlocking {
+                inOrder.verify(getRepositoriesUseCase).execute(any())
+            }
         }
 
         it("should call use case with correct params") {
@@ -67,10 +99,22 @@ class UserRepositoriesViewModelTest : Spek({
             }
         }
 
+        it("should hide loading after use case call") {
+            val inOrder = inOrder(subject.isLoading, getRepositoriesUseCase)
+
+            callMethod()
+
+            runBlocking {
+                inOrder.verify(getRepositoriesUseCase).execute(any())
+            }
+            inOrder.verify(subject.isLoading).value = false
+        }
+
         context("loading success") {
             beforeEachTest {
                 runBlocking {
-                    whenever(getRepositoriesUseCase.execute(any())).thenReturn(BaseResult.Ok(repositoryListResponse))
+                    whenever(getRepositoriesUseCase.execute(any())).thenReturn(
+                            BaseResult.Ok(repositoryListResponse))
                 }
 
                 callMethod()
@@ -82,7 +126,53 @@ class UserRepositoriesViewModelTest : Spek({
         }
 
         context("loading failure") {
+            val errorMessage = "Error"
 
+            context("no internet error") {
+                beforeEachTest {
+                    runBlocking {
+                        whenever(getRepositoriesUseCase.execute(any())).thenReturn(BaseResult.NetworkError())
+                    }
+
+                    whenever(resourcesRepository.getString(R.string.error_no_connection)).thenReturn(errorMessage)
+
+                    callMethod()
+                }
+
+                it("should show error message") {
+                    verify(subject.errorMessage).postValue(errorMessage)
+                }
+            }
+
+            context("api error") {
+                beforeEachTest {
+                    runBlocking {
+                        whenever(getRepositoriesUseCase.execute(any())).thenReturn(BaseResult.ApiError(400))
+                    }
+
+                    whenever(resourcesRepository.getString(R.string.name_input_error_wrong_name)).thenReturn(errorMessage)
+
+                    callMethod()
+                }
+
+                it("should show error message") {
+                    verify(subject.errorMessage).postValue(errorMessage)
+                }
+            }
+        }
+    }
+
+    describe("onRepositoryClicked()") {
+        val model = repositoryResponse.toUiModel("testUser")
+
+        fun callMethod(uiModel: UserRepositoryUiModel = model) {
+            subject.onRepositoryClicked(uiModel)
+        }
+
+        it("should navigate to commits screen") {
+            callMethod()
+
+            verify(subject.navigateToCommitsAction).postValue(model)
         }
     }
 })
