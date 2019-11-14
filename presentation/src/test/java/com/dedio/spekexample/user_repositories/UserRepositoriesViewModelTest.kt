@@ -3,7 +3,7 @@ package com.dedio.spekexample.user_repositories
 import com.dedio.domain.models.BaseResult
 import com.dedio.domain.models.RepositoryListItem
 import com.dedio.domain.models.RepositoryListResponse
-import com.dedio.domain.use_cases.GetRepositoriesUseCase
+import com.dedio.domain.use_cases.GetRepositoriesUseCaseTest
 import com.dedio.spekexample.MainApplication
 import com.dedio.spekexample.R
 import com.dedio.spekexample.models.UserRepositoryUiModel
@@ -24,7 +24,7 @@ class UserRepositoriesViewModelTest : Spek({
 
     val application by memoized { mock<MainApplication>() }
     val resourcesRepository by memoized { mock<ResourceRepository>() }
-    val getRepositoriesUseCase by memoized { mock<GetRepositoriesUseCase>() }
+    val getRepositoriesUseCase by memoized { mock<GetRepositoriesUseCaseTest>() }
 
     val subject by memoized {
         UserRepositoriesViewModel(application, resourcesRepository, getRepositoriesUseCase)
@@ -60,7 +60,7 @@ class UserRepositoriesViewModelTest : Spek({
 
         it("should call use case method with correct params") {
             val userName = "userName"
-            val requiredParams = GetRepositoriesUseCase.Params(userName, false)
+            val requiredParams = GetRepositoriesUseCaseTest.Params(userName, false)
 
             callMethod(userName)
 
@@ -90,7 +90,7 @@ class UserRepositoriesViewModelTest : Spek({
 
         it("should call use case with correct params") {
             val userName = "userName"
-            val requiredParams = GetRepositoriesUseCase.Params(userName, true)
+            val requiredParams = GetRepositoriesUseCaseTest.Params(userName, true)
 
             callMethod(userName)
 

@@ -12,12 +12,17 @@ ext {
     roomVersion = '2.2.0-rc01'
 
     //LIBRARIES
-    kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
     okHttp = "com.squareup.okhttp3:okhttp:$okHttpVersion"
     okHttpLogger = "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
     retrofitConverter = "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     retrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
     gson = "com.google.code.gson:gson:$gsonVersion"
+    mockito = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
+
+    kotlin = [
+            core   : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
+            reflect: "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion",
+    ]
 
     dagger = [
             kapt          : "com.google.dagger:dagger-compiler:$daggerVersion",
@@ -42,13 +47,13 @@ ext {
 
     room = [
             runtime : "androidx.room:room-runtime:$roomVersion",
-            compiler : "androidx.room:room-compiler:$roomVersion",
-            ktx : "androidx.room:room-ktx:$roomVersion"
+            compiler: "androidx.room:room-compiler:$roomVersion",
+            ktx     : "androidx.room:room-ktx:$roomVersion"
     ]
 
     //DEPENDENCIES
     domainDependencies = [
-            kotlin,
+            kotlin.core,
             'javax.inject:javax.inject:1',
 
             // Coroutines
@@ -60,10 +65,18 @@ ext {
     domainKaptDependencies = [
     ]
 
-    domainTestDependencies = []
+    domainTestDependencies = [
+            spek.dsl,
+            spek.runner,
+            junit.junit,
+            junit.engine,
+            kotlin.reflect,
+            mockito,
+            coroutines.test
+    ]
 
     dataDependencies = [
-            kotlin,
+            kotlin.core,
             dagger.implementation,
 
             // Coroutines
@@ -79,7 +92,7 @@ ext {
     dataTestDependencies = []
 
     remoteDependencies = [
-            kotlin,
+            kotlin.core,
             dagger.implementation,
             gson,
 
@@ -100,7 +113,7 @@ ext {
     remoteTestDependencies = []
 
     cacheDependencies = [
-            kotlin,
+            kotlin.core,
             dagger.implementation,
             gson,
 
@@ -117,11 +130,11 @@ ext {
     ]
 
     cacheTestDependencies = [
-            
+
     ]
 
     presentationDependencies = [
-            kotlin,
+            kotlin.core,
             dagger.implementation,
 
             //Android design
@@ -161,8 +174,8 @@ ext {
             spek.runner,
             junit.junit,
             junit.engine,
-            "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion",
-            "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0",
+            kotlin.reflect,
+            mockito,
             coroutines.test
     ]
 }
