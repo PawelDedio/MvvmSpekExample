@@ -51,6 +51,16 @@ ext {
             ktx     : "androidx.room:room-ktx:$roomVersion"
     ]
 
+    commonTestLibraries = [
+            spek.dsl,
+            spek.runner,
+            junit.junit,
+            junit.engine,
+            kotlin.reflect,
+            mockito,
+            coroutines.test
+    ]
+
     //DEPENDENCIES
     domainDependencies = [
             kotlin.core,
@@ -66,13 +76,7 @@ ext {
     ]
 
     domainTestDependencies = [
-            spek.dsl,
-            spek.runner,
-            junit.junit,
-            junit.engine,
-            kotlin.reflect,
-            mockito,
-            coroutines.test
+            commonTestLibraries
     ]
 
     dataDependencies = [
@@ -89,7 +93,9 @@ ext {
             dagger.kapt,
     ]
 
-    dataTestDependencies = []
+    dataTestDependencies = [
+            commonTestLibraries
+    ]
 
     remoteDependencies = [
             kotlin.core,
@@ -170,12 +176,6 @@ ext {
     ]
 
     presentationTestDependencies = [
-            spek.dsl,
-            spek.runner,
-            junit.junit,
-            junit.engine,
-            kotlin.reflect,
-            mockito,
-            coroutines.test
+            commonTestLibraries
     ]
 }
