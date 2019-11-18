@@ -116,7 +116,9 @@ ext {
             dagger.kapt,
     ]
 
-    remoteTestDependencies = []
+    remoteTestDependencies = [
+            commonTestLibraries
+    ]
 
     cacheDependencies = [
             kotlin.core,
