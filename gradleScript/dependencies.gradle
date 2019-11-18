@@ -136,7 +136,7 @@ ext {
     ]
 
     cacheTestDependencies = [
-
+            commonTestLibraries
     ]
 
     presentationDependencies = [

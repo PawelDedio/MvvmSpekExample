@@ -6,7 +6,7 @@ package com.dedio.domain.models
 @Suppress("unused")
 sealed class BaseResult<out T : Any> {
 
-    class Ok<out T : Any>(val value: T) : BaseResult<T>()
+    data class Ok<out T : Any>(val value: T) : BaseResult<T>()
     class CancelledError : Error()
     class ApiError(val code: Int, exception: Exception? = null) : Error(exception)
     class NetworkError(exception: Exception? = null) : Error(exception)
