@@ -27,9 +27,8 @@ class GithubRepositoriesRepositoryImplTest : Spek({
     }
 
     describe("getRepositories()") {
-        fun callMethod(userName: String,
-                               forceRefresh: Boolean): BaseResult<RepositoryListResponse> {
-            return runBlocking { subject.getRepositories(userName, forceRefresh) }
+        fun callMethod(userName: String, forceRefresh: Boolean) = runBlocking {
+            subject.getRepositories(userName, forceRefresh)
         }
 
         context("forceRefresh is true") {
@@ -53,7 +52,10 @@ class GithubRepositoriesRepositoryImplTest : Spek({
 
                 it("should save repositories into cache") {
                     val result = callMethod(userName)
-                    runBlocking { verify(cachedSource).setRepositories(userName, (result as BaseResult.Ok).value) }
+                    runBlocking {
+                        verify(cachedSource).setRepositories(userName,
+                                (result as BaseResult.Ok).value)
+                    }
                 }
             }
 
@@ -108,7 +110,8 @@ class GithubRepositoriesRepositoryImplTest : Spek({
                 beforeEachTest {
                     runBlocking {
                         whenever(remoteSource.getRepositories(userName)).thenReturn(remoteResult)
-                        whenever(cachedSource.getRepositories(userName)).thenReturn(BaseResult.Error())
+                        whenever(cachedSource.getRepositories(userName)).thenReturn(
+                                BaseResult.Error())
                     }
                 }
 

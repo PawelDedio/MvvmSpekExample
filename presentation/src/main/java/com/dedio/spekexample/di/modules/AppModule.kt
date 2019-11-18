@@ -5,7 +5,7 @@ import android.view.inputmethod.InputMethodManager
 import com.dedio.cache.data_sources.github.CachedGithubDataSourceImpl
 import com.dedio.data.data_sources.github.CachedGithubDataSource
 import com.dedio.data.data_sources.github.RemoteGithubDataSource
-import com.dedio.data.repositories.GithubCommitRepositoryImpl
+import com.dedio.data.repositories.GithubCommitsRepositoryImpl
 import com.dedio.data.repositories.GithubRepositoriesRepositoryImpl
 import com.dedio.data.utils.DispatcherProviderImpl
 import com.dedio.data.utils.SerializationHelperImpl
@@ -76,5 +76,5 @@ class AppModule(private val context: MainApplication) {
 
     @Provides
     @Singleton
-    fun providesGithubCommitsRepository(impl: GithubCommitRepositoryImpl) = impl as GithubCommitsRepository
+    fun providesGithubCommitsRepository(impl: GithubCommitsRepositoryImpl) = impl as GithubCommitsRepository
 }

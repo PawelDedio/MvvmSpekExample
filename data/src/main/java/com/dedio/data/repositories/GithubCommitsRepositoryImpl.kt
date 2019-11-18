@@ -7,7 +7,7 @@ import com.dedio.domain.models.RepositoryCommitsResponse
 import com.dedio.domain.repositories.GithubCommitsRepository
 import javax.inject.Inject
 
-class GithubCommitRepositoryImpl @Inject constructor(
+class GithubCommitsRepositoryImpl @Inject constructor(
         private val cachedSource: CachedGithubDataSource,
         private val remoteSource: RemoteGithubDataSource): GithubCommitsRepository {
 
